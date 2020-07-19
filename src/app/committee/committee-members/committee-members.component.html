@@ -1,0 +1,6 @@
+<app-legislators-common
+  title="Members of {{ this.committeeName }}"
+  [filter]="filter"
+  [legislators]="this.committee.currentMembers"
+  [legislators$]="legislators$"
+></app-legislators-common>

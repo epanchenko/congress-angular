@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-primary text-center">
+    Amendments of {{ this.billAmendment.billTitle }}:
+    {{ this.billAmendment.billID | uppercase }}
+  </h1>
+
+  <div *ngFor="let amendment of this.billAmendment.amendments">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Amendment {{ this.amendment.number }}</h5>
+            <span class="card-text">
+              Sponsor: {{ this.amendment.sponsor }}
+            </span>
+            <br />
+            <span class="card-text">
+              Latest Action: {{ this.amendment.lastMajorAction }}
+            </span>
+            <br />
+            <span class="card-text">
+              {{ this.amendment.lastMajorActionDate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

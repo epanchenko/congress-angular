@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 class="text-primary text-center">
+    Votes of {{ this.billID | uppercase }}
+  </h1>
+
+  <div *ngFor="let vote of this.billVotes.votes">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ getDate(vote.votedAt) }}
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ vote.chamber | titlecase }}
+            </h6>
+            <span class="card-text">
+              {{ vote.question }}
+            </span>
+            <br />
+            <span class="card-text">
+              {{ vote.result }}
+            </span>
+            <br />
+            <a
+              class="btn btn-primary mt-3"
+              role="button"
+              [routerLink]="['/votes/vote/rollID', this.vote.rollID]"
+              >Detail</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.billVotes.moreVotesAvailable" class="row">
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="moreVotes()"
+      href="#"
+      role="button"
+    >
+      More Votes
+    </button>
+  </div>
+</div>

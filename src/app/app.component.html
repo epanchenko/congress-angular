@@ -1,0 +1,18 @@
+<app-top-nav fxHide.gt-xs></app-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <mat-nav-list>
+      <app-menu-list-item
+        *ngFor="let item of navItems"
+        [item]="item"
+      ></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- <app-top-nav fxHide.xs></app-top-nav> -->
+  <router-outlet></router-outlet>
+  <div fxFlex></div>
+</mat-sidenav-container>
+
+<div *ngIf="loading" class="text-center" id="loading">
+  <img class="spinner" src="assets/ajax-loader.gif" alt="Loading..." />
+</div>

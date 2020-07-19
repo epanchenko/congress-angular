@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="text-primary text-center">Votes</h1>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-primary" scope="col">Description</th>
+          <th class="text-primary" scope="col">Question</th>
+          <th class="text-primary" scope="col">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vote of this.voteSummary.votes">
+          <th scope="row">
+            <a [routerLink]="getDetailLink(vote.rollID)">{{
+              vote.billTitle
+            }}</a>
+          </th>
+          <th scope="row">{{ vote.question }}</th>
+          <th scope="row">{{ vote.result }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="this.voteSummary.moreVotesAvailable" class="row">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="moreVotes()"
+      href="#"
+      role="button"
+    >
+      More Votes
+    </button>
+  </div>
+</div>

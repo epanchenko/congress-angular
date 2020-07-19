@@ -1,0 +1,180 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <form
+          class="form-register text-center border border-light p-5"
+          [formGroup]="registerForm"
+          #formDir="ngForm"
+          (ngSubmit)="onSubmit()"
+          novalidate
+        >
+          <p class="h4 mb-4 text-primary">Register</p>
+
+          <p
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (name.dirty && name.touched)) &&
+              name.hasError('required')
+            "
+          >
+            Name is required.
+          </p>
+
+          <input
+            type="text"
+            id="defaultLoginFormName"
+            formControlName="name"
+            required
+            class="form-control mb-4"
+            placeholder="Name"
+          />
+
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (email.dirty && email.touched)) &&
+              email.errors !== null
+            "
+          >
+            Please enter a valid email address.
+          </label>
+
+          <label
+            class="text-danger"
+            *ngIf="registerForm.errors && registerForm.errors.emailExists"
+          >
+            Email address already exists.
+          </label>
+
+          <input
+            type="email"
+            id="defaultLoginFormEmail"
+            formControlName="email"
+            required
+            class="form-control mb-4"
+            placeholder="E-mail"
+          />
+
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (password.dirty && password.touched)) &&
+              password.hasError('required')
+            "
+          >
+            Password is required.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (password.dirty && password.touched)) &&
+              password.hasError('minlength')
+            "
+          >
+            Please enter a valid password with length of at least 8 characters.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (password.dirty && password.touched)) &&
+              password.hasError('maxlength')
+            "
+          >
+            Please enter a valid password with length of no more than 25
+            characters.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted || (password.dirty && password.touched)) &&
+              password.hasError('pattern')
+            "
+          >
+            Please enter a valid password with both letters and numbers.
+          </label>
+          <input
+            type="password"
+            id="defaultLoginFormPassword"
+            formControlName="password"
+            required
+            class="form-control mb-4"
+            placeholder="Password"
+          />
+
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted ||
+                (passwordConfirmation.dirty && passwordConfirmation.touched)) &&
+              passwordConfirmation.hasError('required')
+            "
+          >
+            Password Confirmation is required.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted ||
+                (passwordConfirmation.dirty && passwordConfirmation.touched)) &&
+              passwordConfirmation.hasError('minlength')
+            "
+          >
+            Please enter a valid password Confirmation with length of at least 8
+            characters.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted ||
+                (passwordConfirmation.dirty && passwordConfirmation.touched)) &&
+              passwordConfirmation.hasError('maxlength')
+            "
+          >
+            Please enter a valid password Confirmation with length of no more
+            than 25 characters.
+          </label>
+          <label
+            class="text-danger"
+            *ngIf="
+              (formDir.submitted ||
+                (passwordConfirmation.dirty && passwordConfirmation.touched)) &&
+              passwordConfirmation.hasError('pattern')
+            "
+          >
+            Please enter a valid password Confirmation with both letters and
+            numbers.
+          </label>
+
+          <div
+            class="text-danger"
+            *ngIf="formDir.submitted && registerForm.errors"
+          >
+            <p *ngIf="registerForm.hasError('passwordsDontMatch')">
+              Password and Password Confirmation Must Match
+            </p>
+            <p *ngIf="registerForm.errors.noConnection">
+              No Connection Detected
+            </p>
+            <p *ngIf="registerForm.errors.unknownError">
+              Unknown Error
+            </p>
+          </div>
+
+          <input
+            type="password"
+            id="defaultLoginFormPasswordConfirmation"
+            formControlName="passwordConfirmation"
+            required
+            class="form-control mb-4"
+            placeholder="Password Confirmation"
+          />
+
+          <button class="btn btn-primary btn-block my-4" type="submit">
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

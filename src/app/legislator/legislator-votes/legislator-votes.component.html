@@ -1,0 +1,43 @@
+<div class="container">
+  <h1 class="text-primary text-center mb-3">
+    Votes of {{ this.voteSummary.name }}
+  </h1>
+
+  <div *ngFor="let vote of this.voteSummary.votes">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <span class="card-text">
+              <a [routerLink]="getDetailLink(vote.rollID)">{{
+                vote.billTitle
+              }}</a>
+              <br />
+              {{ vote.question }}
+
+              <div [appStyleColor]="getVoteColor(vote.vote)">
+                {{ vote.vote }}
+              </div>
+              {{ vote.result }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="this.voteSummary.moreVotesAvailable"
+    class="row justify-content-center mt-3 mb-3"
+  >
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="moreVotes()"
+      href="#"
+      role="button"
+    >
+      More Votes
+    </button>
+  </div>
+</div>

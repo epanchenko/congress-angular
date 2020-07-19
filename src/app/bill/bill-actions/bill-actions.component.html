@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="text-primary text-center">
+    Actions of {{ this.billAction.billTitle }}:
+    {{ this.billAction.billID | uppercase }}
+  </h1>
+
+  <div *ngFor="let action of this.billAction.actions">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ this.action.date }}
+            </h5>
+            <span class="card-text">
+              {{ this.action.chamber }}
+            </span>
+            <br />
+            <span class="card-text">
+              {{ this.action.actionText }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

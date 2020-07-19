@@ -1,0 +1,29 @@
+<!-- <div class="row justify-content-center">
+  <h1 class="text-primary text-center mb-3">
+    Committees of {{ this.billCommittees.billTitle }}:
+    {{ this.billCommittees.billID | uppercase }}
+  </h1>
+</div>
+<div class="row justify-content-center">
+  <div class="text-center">
+    <div *ngFor="let committee of this.billCommittees.committees">
+      <div class="col-sm-12 text-center">
+        <a
+          class="btn btn-primary btn-block mb-1"
+          role="button"
+          [routerLink]="[
+            '/committees/committee/committeeID',
+            committee.committeeID
+          ]"
+          >{{ committee.committeeName | titlecase }}</a
+        >
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<app-committees-common
+  title="Committees of {{ this.billCommittees.billTitle }} :
+	{{ this.billCommittees.billID | uppercase }}"
+  [committees]="this.billCommittees.committees"
+></app-committees-common>

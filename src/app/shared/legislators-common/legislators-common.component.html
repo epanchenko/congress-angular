@@ -1,0 +1,82 @@
+<div class="container">
+  <h1 *ngIf="title !== ''" class="text-primary text-center">{{ title }}</h1>
+
+  <div *ngIf="filter" class="row">
+    <div class="col-sm-12">
+      <form>
+        <div class="form-group row">
+          <input
+            [formControl]="filter"
+            class="form-control"
+            type="text"
+            id="searchTextbox"
+            placeholder="Last Name or State Search"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <table *ngIf="this.legislators.length" class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th class="text-primary table-primary" scope="col">Last Name</th>
+          <th class="text-primary table-primary" scope="col">First Name</th>
+          <th class="text-primary table-primary" scope="col">State</th>
+          <th class="text-primary table-primary" scope="col">Position</th>
+          <th class="text-primary table-primary" scope="col">Party</th>
+          <th class="text-primary table-primary" scope="col">District</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          style="transform: rotate(0);"
+          class="bg-white"
+          *ngFor="let legislator of legislators$ | async"
+        >
+          <td>
+            <a
+              class="stretched-link"
+              [routerLink]="['/legislator', legislator.bioguideID]"
+            >
+              <ngb-highlight
+                *ngIf="filter"
+                [result]="legislator.lastName"
+                [term]="filter.value"
+              ></ngb-highlight>
+              <div *ngIf="!filter">
+                {{ legislator.lastName }}
+              </div>
+            </a>
+          </td>
+          <td>
+            {{ legislator.firstName }}
+          </td>
+          <td>
+            <ngb-highlight
+              *ngIf="filter"
+              [result]="legislator.state"
+              [term]="filter.value"
+            ></ngb-highlight>
+            <div *ngIf="!filter">
+              {{ legislator.state }}
+            </div>
+          </td>
+          <td>
+            {{ legislator.position.substring(0, 3) + '.' }}
+          </td>
+          <td>
+            {{ legislator.party }}
+          </td>
+          <td>
+            {{ legislator.district }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!this.legislators.length">
+    <h3 class="text-center mb-3 text-primary">No Legislators</h3>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="text-primary text-center">Nominations</h1>
+
+  <div *ngFor="let nomination of this.nominations.nominations">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <span class="card-text font-weight-bold">
+              <a
+                [routerLink]="[
+                  '/nominations/nomination/nominationID',
+                  nomination.nominationID
+                ]"
+                >{{ nomination.description }}</a
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="this.nominations.moreNominationsAvailable"
+    class="row justify-content-center mb-3"
+  >
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="moreNominations()"
+      href="#"
+      role="button"
+    >
+      More Nominations
+    </button>
+  </div>
+</div>

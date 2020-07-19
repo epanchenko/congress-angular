@@ -1,0 +1,82 @@
+<div class="container">
+  <h2 class="text-center mb-3">
+    {{ this.nomination.description }}
+  </h2>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">
+            <span class="font-weight-bold">Congress:</span>
+            {{ this.nomination.congress }}
+          </p>
+          <p class="card-text">
+            <span class="font-weight-bold">Received:</span>
+            {{ getDate(this.nomination.dateReceived) }}
+            <br />
+            <span class="font-weight-bold">Status:</span>
+            {{ this.nomination.status }}
+          </p>
+          <div *ngIf="this.lastAction">
+            <p class="card-text">
+              <span class="font-weight-bold">Last Action:</span>
+              <br />
+              {{ this.lastAction.date }}<br />
+              {{ this.lastAction.action }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="text-center">
+      <div *ngIf="this.nomination.actions.length > 0">
+        <a
+          class="btn btn-primary btn-block mt-3 mb-1"
+          role="button"
+          [routerLink]="[
+            '/nominations/nomination/nominationID',
+            this.nomination.nominationID,
+            'actions'
+          ]"
+          >Actions</a
+        >
+      </div>
+
+      <div *ngIf="this.votesAvailable">
+        <a
+          class="btn btn-primary btn-block mb-1"
+          role="button"
+          [routerLink]="[
+            '/nominations/votes/nomination/nominationID',
+            this.nomination.nominationID
+          ]"
+          >Votes</a
+        >
+      </div>
+
+      <div *ngIf="this.nomination.committeeID !== ''">
+        <a
+          class="btn btn-primary btn-block mb-1"
+          role="button"
+          [routerLink]="[
+            '/committees/committee/committeeID',
+            this.nomination.committeeID
+          ]"
+          >Committee</a
+        >
+      </div>
+
+      <div *ngIf="authService.isLoggedIn$ | async">
+        <div class="text-center">
+          <button class="btn btn-primary btn-block mr-2" (click)="follow()">
+            {{ this.followText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

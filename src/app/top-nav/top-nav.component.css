@@ -1,0 +1,19 @@
+.menu-button:focus,
+.menu-button:active:focus,
+.menu-button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+
+mat-toolbar {
+  min-height: 35px !important;
+  height: 35px !important;
+}
+
+.disableLink {
+  color: inherit;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

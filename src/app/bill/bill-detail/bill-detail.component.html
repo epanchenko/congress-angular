@@ -1,0 +1,86 @@
+<div class="container">
+  <h2 class="text-center mb-3">
+    {{ this.bill.billTitle }}: {{ this.billID | uppercase }}
+  </h2>
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <a class="btn btn-primary mb-3" role="button" [href]="this.bill.textURL"
+        >Bill Text</a
+      >
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Summary</h5>
+          <p class="card-text">
+            {{ this.bill.summary }}
+          </p>
+          <p class="card-text">
+            <span class="font-weight-bold">Congress:</span>
+            {{ this.bill.congress }}
+          </p>
+          <p class="card-text">
+            <span class="font-weight-bold">Introduced:</span>
+            {{ this.bill.introduced }}
+          </p>
+          <div *ngIf="this.lastAction">
+            <p class="card-text">
+              <span class="font-weight-bold">Last Action:</span>
+              <br />
+              {{ this.lastAction.chamber }}<br />
+              {{ this.lastAction.date }}<br />
+              {{ this.lastAction.actionText }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="text-center">
+      <div *ngIf="this.bill.actions.length > 0">
+        <a
+          class="btn btn-primary btn-block mt-3 mb-1"
+          role="button"
+          [routerLink]="['/bills/bill/billID', this.billID, 'actions']"
+          >Actions</a
+        >
+      </div>
+
+      <a
+        class="btn btn-primary btn-block mb-1"
+        role="button"
+        [routerLink]="['/bills/votes/bill/billID', this.billID]"
+        >Votes</a
+      >
+
+      <div *ngIf="this.bill.amendments.length > 0">
+        <a
+          class="btn btn-primary btn-block mb-1"
+          role="button"
+          [routerLink]="['/bills/bill/billID', this.billID, 'amendments']"
+          >Amendments</a
+        >
+      </div>
+
+      <div *ngIf="this.bill.committees.length > 0">
+        <a
+          class="btn btn-primary btn-block mb-1"
+          role="button"
+          [routerLink]="['/bills/bill/billID', this.billID, 'committees']"
+          >Committees</a
+        >
+      </div>
+
+      <div *ngIf="authService.isLoggedIn$ | async">
+        <button class="btn btn-block btn-primary" (click)="follow()">
+          {{ this.followText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

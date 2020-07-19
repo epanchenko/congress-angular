@@ -1,0 +1,204 @@
+<div class="container">
+  <div class="row">
+    <div class="mb-3 mx-auto">
+      <div class="card">
+        <a
+          *ngIf="this.billID"
+          [routerLink]="['/bills/bill/billID', this.billID]"
+          class="btn btn-primary"
+          role="button"
+          >Bill Detail</a
+        >
+        <a
+          *ngIf="this.nominationID"
+          [routerLink]="[
+            '/nominations/nomination/nominationID',
+            this.nominationID
+          ]"
+          class="btn btn-primary"
+          role="button"
+          >Nomination Detail</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 mb-3 mx-auto">
+      <div class="card">
+        <h2 class="text-center mt-1 mb-4">Total Votes</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary" scope="col">Vote</th>
+              <th class="text-primary" scope="col">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
+              <td>{{ this.totalVotes[0] }}</td>
+            </tr>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
+              <td>{{ this.totalVotes[1] }}</td>
+            </tr>
+            <tr *ngIf="this.totalVotes[2] > 0">
+              <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
+              <td>{{ this.totalVotes[2] }}</td>
+            </tr>
+            <tr *ngIf="this.totalVotes[3] > 0">
+              <td [appStyleColor]="getVoteColor('Present')">Present</td>
+              <td>{{ this.totalVotes[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 mb-3 mx-auto">
+      <div class="card">
+        <h2 class="text-center mt-1 mb-4">Republican Votes</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary" scope="col">Vote</th>
+              <th class="text-primary" scope="col">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
+              <td>{{ this.republicanVotes[0] }}</td>
+            </tr>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
+              <td>{{ this.republicanVotes[1] }}</td>
+            </tr>
+            <tr *ngIf="this.republicanVotes[2] > 0">
+              <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
+              <td>{{ this.republicanVotes[2] }}</td>
+            </tr>
+            <tr *ngIf="this.republicanVotes[3] > 0">
+              <td [appStyleColor]="getVoteColor('Present')">Present</td>
+              <td>{{ this.republicanVotes[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 mb-3 mx-auto">
+      <div class="card">
+        <h2 class="text-center mt-1 mb-4">Democratic Votes</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary" scope="col">Vote</th>
+              <th class="text-primary" scope="col">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
+              <td>{{ this.democraticVotes[0] }}</td>
+            </tr>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
+              <td>{{ this.democraticVotes[1] }}</td>
+            </tr>
+            <tr *ngIf="this.democraticVotes[2] > 0">
+              <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
+              <td>{{ this.democraticVotes[2] }}</td>
+            </tr>
+            <tr *ngIf="this.democraticVotes[3] > 0">
+              <td [appStyleColor]="getVoteColor('Present')">Present</td>
+              <td>{{ this.democraticVotes[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 mb-3 mx-auto">
+      <div class="card">
+        <h2 class="text-center mt-1 mb-4">Independent Votes</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary" scope="col">Vote</th>
+              <th class="text-primary" scope="col">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
+              <td>{{ this.independentVotes[0] }}</td>
+            </tr>
+            <tr>
+              <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
+              <td>{{ this.independentVotes[1] }}</td>
+            </tr>
+            <tr *ngIf="this.independentVotes[2] > 0">
+              <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
+              <td>{{ this.independentVotes[2] }}</td>
+            </tr>
+            <tr *ngIf="this.independentVotes[3] > 0">
+              <td [appStyleColor]="getVoteColor('Present')">Present</td>
+              <td>{{ this.independentVotes[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 mb-3 mx-auto">
+      <div class="card">
+        <h2 class="text-center mt-1 mb-4">Roll Call</h2>
+        <form>
+          <div class="form-group">
+            <input
+              [formControl]="filter"
+              class="form-control"
+              type="text"
+              id="searchTextbox"
+              placeholder="Last Name Search"
+            />
+          </div>
+        </form>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary" scope="col">Name</th>
+              <th class="text-primary" scope="col">Vote</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vote of individualVotes$ | async">
+              <td>
+                <ngb-highlight
+                  [result]="vote.lastName"
+                  [term]="filter.value"
+                ></ngb-highlight
+                >, {{ vote.firstName }} ({{ vote.party }}) {{ vote.state }}
+                {{ this.districtString(vote.district) }}
+              </td>
+              <td [appStyleColor]="getVoteColor(vote.vote)">
+                {{ this.getVoteString(vote.vote) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="container">
+  <h1 class="my-4">
+    {{ getName() }}
+
+    <small>{{ getDescription() }}</small>
+  </h1>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <img class="img-fluid ml-2 mb-2" [src]="getImageWebsite()" />
+    </div>
+
+    <div class="col-md-8">
+      <p>
+        <a class="btn btn-primary mr-2" [href]="getBioWebsite()" role="button"
+          >Biography</a
+        >
+        <a
+          class="btn btn-primary mr-2"
+          [routerLink]="['/legislator/terms', this.bioguideID]"
+          role="button"
+          >Terms</a
+        >
+        <a
+          class="btn btn-primary mr-2"
+          [routerLink]="['/legislator/votes', this.bioguideID]"
+          role="button"
+          >Votes</a
+        >
+
+        <button
+          class="btn btn-primary mr-2"
+          *ngIf="authService.isLoggedIn$ | async"
+          (click)="follow()"
+        >
+          {{ this.followText }}
+          
+        </button>
+      </p>
+
+      <p *ngIf="legislator.data.committees.length > 0">
+        <a
+          class="btn btn-primary mr-2"
+          [routerLink]="['/legislator', this.bioguideID, 'committees']"
+          role="button"
+          >Committees</a
+        >
+      </p>
+      <p *ngIf="legislator.data.phone !== ''">
+        <a class="btn btn-primary mr-2" [href]="getTelephone()" role="button">{{
+          legislator.data.phone
+        }}</a>
+      </p>
+      <p *ngIf="legislator.data.url !== ''">
+        <a
+          *ngIf="legislator.data.url !== ''"
+          class="btn btn-primary"
+          [href]="legislator.data.url"
+          role="button"
+          >Website</a
+        >
+      </p>
+
+      <p>
+        <a
+          *ngIf="legislator.data.twitterAccount !== ''"
+          class="btn btn-primary mr-2"
+          [href]="getTwitter()"
+          role="button"
+          >Twitter</a
+        >
+
+        <a
+          *ngIf="legislator.data.youtubeAccount !== ''"
+          class="btn btn-primary mr-2"
+          [href]="getYouTube()"
+          role="button"
+          >YouTube</a
+        >
+
+        <a
+          *ngIf="legislator.data.facebookAccount !== ''"
+          class="btn btn-primary"
+          [href]="getFacebook()"
+          role="button"
+          >Facebook</a
+        >
+      </p>
+    </div>
+  </div>
+  <h3 class="my-4">Constituents Map</h3>
+
+  <div class="row">
+    <agm-map
+      [zoom]="3"
+      [disableDefaultUI]="false"
+      [zoomControl]="true"
+      [fitBounds]="true"
+    >
+      <ng-container>
+        <agm-polyline [strokeColor]="'blue'" [strokeWeight]="1">
+          <agm-polyline-point
+            *ngFor="let point of polylines"
+            [latitude]="point.latitude"
+            [longitude]="point.longitude"
+            [agmFitBounds]="true"
+          >
+          </agm-polyline-point>
+        </agm-polyline>
+      </ng-container>
+    </agm-map>
+  </div>
+</div>

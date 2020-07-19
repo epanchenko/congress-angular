@@ -1,0 +1,44 @@
+<mat-toolbar class="fixed-topnav" color="primary">
+  <button
+    mat-icon-button
+    onclick="this.blur()"
+    class="menu-button"
+    id="menu"
+    [disableRipple]="true"
+    (click)="navService.click()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>
+    <a class="disableLink" [routerLink]="'/welcome'"
+      >U.S. Congress Info</a
+    ></span
+  >
+  <span class="spacer"></span>
+  <div *ngIf="authService.isLoggedOut$ | async">
+    <button
+      mat-icon-button
+      onclick="this.blur()"
+      class="menu-button"
+      id="menu"
+      [disableRipple]="true"
+      routerLink="/auth/login"
+      [queryParams]="{ returnUrl: router.url }"
+    >
+      Login
+    </button>
+  </div>
+
+  <div *ngIf="authService.isLoggedIn$ | async">
+    <button
+      mat-icon-button
+      onclick="this.blur()"
+      class="menu-button"
+      id="menu"
+      [disableRipple]="true"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</mat-toolbar>

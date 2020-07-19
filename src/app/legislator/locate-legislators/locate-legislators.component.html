@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h1 class="col-sm-12 text-primary text-center">
+      Locate Your Legislators
+    </h1>
+
+    <div *ngIf="locationFound" class="col-sm-12 map-center">
+      <agm-map
+        [zoomControl]="true"
+        [zoom]="16"
+        [latitude]="latitude"
+        [longitude]="longitude"
+      >
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 center">
+      <div *ngIf="legislators.length > 0">
+        <app-legislators-common
+          title=""
+          [legislators]="legislators"
+          [legislators$]="legislators$"
+        ></app-legislators-common>
+      </div>
+    </div>
+  </div>
+</div>

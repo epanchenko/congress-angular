@@ -46,7 +46,7 @@ export class NominationsService {
     latestActionDate: string
   ): Observable<Nominations> {
     return this.http.get<Nominations>(
-      `${environment.apiURL}nominations/nominations}all/nominationID/${nominationID}/latestActionDate/${latestActionDate}`
+      `${environment.apiURL}nominations/nominations/all/nominationID/${nominationID}/latestActionDate/${latestActionDate}`
     );
   }
 

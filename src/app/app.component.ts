@@ -85,11 +85,11 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       iconName: 'laptop',
       route: 'dataSources/all',
     },
-    {
+    /*{
       displayName: 'Locate',
       iconName: 'location_on',
       route: 'legislator/locate/legislators',
-    },
+    },*/
   ];
 
   loading = false;

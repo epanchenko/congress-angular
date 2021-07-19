@@ -80,7 +80,7 @@ export class LegislatorDetailComponent implements OnInit, OnDestroy {
   getDescription() {
     let location = stateAbbrevations[this.legislator.data.state];
 
-    if (this.legislator.data.district !== '') {
+    if (this.legislator.data.district !== '@') {
       location = location + ' - District ' + this.legislator.data.district;
     }
 

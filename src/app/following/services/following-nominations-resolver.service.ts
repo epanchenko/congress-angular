@@ -32,7 +32,7 @@ export class FollowingNominationsResolverService implements Resolve<any> {
         return EMPTY;
       }),
       map((data) => _.values(data)),
-      map((data) => (data[1] as unknown) as Following[]),
+      map((data) => data[1] as unknown as Following[]),
       tap((nominations: Following[]) => {
         for (const nomination of nominations) {
           requests.push(

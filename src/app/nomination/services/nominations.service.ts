@@ -7,7 +7,10 @@ import { NominationActionPage } from '../interfaces/nominationActionPage';
 import { Nominations } from '../interfaces/nominations';
 import { Following } from '../../interfaces/following';
 
-import { environment } from '../../../environments/environment';
+import {
+  environment,
+  nosqlEnvironment,
+} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -52,20 +55,20 @@ export class NominationsService {
 
   createFollowingNomination(followingID: string): Observable<Following> {
     return this.http.post<Following>(
-      `${environment.apiURL}following/createNomination/`,
+      `${nosqlEnvironment.apiURL}following/createNomination/`,
       { followingID }
     );
   }
 
   deleteFollowingNomination(followingID: string): Observable<{}> {
     return this.http.delete(
-      `${environment.apiURL}following/deleteNomination/${followingID}`
+      `${nosqlEnvironment.apiURL}following/deleteNomination/${followingID}`
     );
   }
 
   findFollowingNomination(followingID: string): Observable<Following> {
     return this.http.get<Following>(
-      `${environment.apiURL}following/findNomination/${followingID}`
+      `${nosqlEnvironment.apiURL}following/findNomination/${followingID}`
     );
   }
 }

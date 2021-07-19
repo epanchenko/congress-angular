@@ -13,7 +13,10 @@ import { Observable, of, forkJoin } from 'rxjs';
 import { map, tap, exhaustMap } from 'rxjs/operators';
 import * as _ from 'lodash-es';
 
-import { environment } from '../../../environments/environment';
+import {
+  environment,
+  nosqlEnvironment,
+} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +32,7 @@ export class LegislatorService {
         .get<LegislatorSummary[]>(
           `${environment.apiURL}legislators/allLegislators`
         )
-        .pipe(
-          map((data) => _.values(data)),
-          map((data) => (data[1] as unknown) as LegislatorSummary[]),
-          tap((data) => (this.legislators = data))
-        );
+        .pipe(tap((data) => (this.legislators = data)));
     }
 
     return of(this.legislators);
@@ -47,7 +46,7 @@ export class LegislatorService {
 
   getCoordinates(district: string) {
     return this.http.get<DistrictCoordinates>(
-      `${environment.apiURL}legislators/coordinates/${district}`
+      `${nosqlEnvironment.apiURL}legislators/coordinates/${district}`
     );
   }
 
@@ -59,7 +58,7 @@ export class LegislatorService {
 
   getDistricts(longitude: number, latitude: number) {
     return this.http.get<District[]>(
-      `${environment.apiURL}legislators/locDists/${longitude},${latitude}`
+      `${nosqlEnvironment.apiURL}legislators/locDists/${longitude},${latitude}`
     );
   }
 
@@ -73,7 +72,9 @@ export class LegislatorService {
     const requests = [];
 
     return this.http
-      .get(`${environment.apiURL}legislators/locDists/${longitude},${latitude}`)
+      .get(
+        `${nosqlEnvironment.apiURL}legislators/locDists/${longitude},${latitude}`
+      )
       .pipe(
         map((data) => _.values(data)),
         map((data) => data[1] as unknown),
@@ -111,31 +112,22 @@ export class LegislatorService {
     });
   }
 
-  /* getFollowingLegislators(): Observable<Following[]> {
-    return this.http
-      .get<Following[]>(`${environment.apiURL}following/getLegislators/`)
-      .pipe(
-        map((data) => _.values(data)),
-        map((data) => (data[1] as unknown) as Following[])
-      );
-  } */
-
   createFollowingLegislator(followingID: string): Observable<Following> {
     return this.http.post<Following>(
-      `${environment.apiURL}following/createLegislator/`,
+      `${nosqlEnvironment.apiURL}following/createLegislator/`,
       { followingID }
     );
   }
 
   deleteFollowingLegislator(followingID: string): Observable<{}> {
     return this.http.delete(
-      `${environment.apiURL}following/deleteLegislator/${followingID}`
+      `${nosqlEnvironment.apiURL}following/deleteLegislator/${followingID}`
     );
   }
 
   findFollowingLegislator(followingID: string): Observable<Following> {
     return this.http.get<Following>(
-      `${environment.apiURL}following/findLegislator/${followingID}`
+      `${nosqlEnvironment.apiURL}following/findLegislator/${followingID}`
     );
   }
 }

@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
 import { filter, map, tap, shareReplay, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
-import { environment } from '../../environments/environment';
+import { environment, nosqlEnvironment } from '../../environments/environment';
 import { AuthContextService } from './auth-context.service';
 import * as moment from 'moment';
 
@@ -45,7 +45,7 @@ export class AuthService {
     private authContextService: AuthContextService
   ) {
     http
-      .get<User>(`${environment.apiURL}auth/user`)
+      .get<User>(`${nosqlEnvironment.apiURL}auth/user`)
       .pipe(
         catchError(() => {
           this.subject.next(ANONYMOUS_USER);
@@ -59,7 +59,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<User>(`${environment.apiURL}auth/login`, { email, password })
+      .post<User>(`${nosqlEnvironment.apiURL}auth/login`, { email, password })
       .pipe(
         shareReplay(),
         tap((user) => {
@@ -73,7 +73,7 @@ export class AuthService {
 
   register(name: string, email: string, password: string) {
     return this.http
-      .post<User>(`${environment.apiURL}auth/register`, {
+      .post<User>(`${nosqlEnvironment.apiURL}auth/register`, {
         name,
         email,
         password,

@@ -71,19 +71,19 @@
           <tbody>
             <tr>
               <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
-              <td>{{ this.republicanVotes[0] }}</td>
+              <td>{{ this.republicanVotes.Yea }}</td>
             </tr>
             <tr>
               <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
-              <td>{{ this.republicanVotes[1] }}</td>
+              <td>{{ this.republicanVotes.Nay }}</td>
             </tr>
-            <tr *ngIf="this.republicanVotes[2] > 0">
+            <tr *ngIf="this.republicanVotes.NotVoting > 0">
               <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
-              <td>{{ this.republicanVotes[2] }}</td>
+              <td>{{ this.republicanVotes.NotVoting }}</td>
             </tr>
-            <tr *ngIf="this.republicanVotes[3] > 0">
+            <tr *ngIf="this.republicanVotes.Present > 0">
               <td [appStyleColor]="getVoteColor('Present')">Present</td>
-              <td>{{ this.republicanVotes[3] }}</td>
+              <td>{{ this.republicanVotes.Present }}</td>
             </tr>
           </tbody>
         </table>
@@ -105,19 +105,19 @@
           <tbody>
             <tr>
               <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
-              <td>{{ this.democraticVotes[0] }}</td>
+              <td>{{ this.democraticVotes.Yea }}</td>
             </tr>
             <tr>
               <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
-              <td>{{ this.democraticVotes[1] }}</td>
+              <td>{{ this.democraticVotes.Nay }}</td>
             </tr>
-            <tr *ngIf="this.democraticVotes[2] > 0">
+            <tr *ngIf="this.democraticVotes.NotVoting > 0">
               <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
-              <td>{{ this.democraticVotes[2] }}</td>
+              <td>{{ this.democraticVotes.NotVoting }}</td>
             </tr>
-            <tr *ngIf="this.democraticVotes[3] > 0">
+            <tr *ngIf="this.democraticVotes.Present > 0">
               <td [appStyleColor]="getVoteColor('Present')">Present</td>
-              <td>{{ this.democraticVotes[3] }}</td>
+              <td>{{ this.democraticVotes.Present }}</td>
             </tr>
           </tbody>
         </table>
@@ -139,19 +139,19 @@
           <tbody>
             <tr>
               <td [appStyleColor]="getVoteColor('Yea')">Yea</td>
-              <td>{{ this.independentVotes[0] }}</td>
+              <td>{{ this.independentVotes.Yea }}</td>
             </tr>
             <tr>
               <td [appStyleColor]="getVoteColor('Nay')">Nay</td>
-              <td>{{ this.independentVotes[1] }}</td>
+              <td>{{ this.independentVotes.Nay }}</td>
             </tr>
-            <tr *ngIf="this.independentVotes[2] > 0">
+            <tr *ngIf="this.independentVotes.NotVoting > 0">
               <td [appStyleColor]="getVoteColor('No Vote')">No Vote</td>
-              <td>{{ this.independentVotes[2] }}</td>
+              <td>{{ this.independentVotes.NotVoting }}</td>
             </tr>
-            <tr *ngIf="this.independentVotes[3] > 0">
+            <tr *ngIf="this.independentVotes.Present > 0">
               <td [appStyleColor]="getVoteColor('Present')">Present</td>
-              <td>{{ this.independentVotes[3] }}</td>
+              <td>{{ this.independentVotes.Present }}</td>
             </tr>
           </tbody>
         </table>

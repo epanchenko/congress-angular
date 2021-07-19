@@ -6,7 +6,10 @@ import { BillDetail } from '../interfaces/billDetail';
 import { BillActionPage } from '../interfaces/billActionPage';
 import { BillAmendmentPage } from '../interfaces/billAmendmentPage';
 import { BillCommitteePage } from '../interfaces/billCommitteePage';
-import { environment } from '../../../environments/environment';
+import {
+  environment,
+  nosqlEnvironment,
+} from '../../../environments/environment';
 import { Following } from '../../interfaces/following';
 
 @Injectable({
@@ -41,20 +44,20 @@ export class BillsService {
 
   createFollowingBill(followingID: string): Observable<Following> {
     return this.http.post<Following>(
-      `${environment.apiURL}following/createBill/`,
+      `${nosqlEnvironment.apiURL}following/createBill/`,
       { followingID }
     );
   }
 
   deleteFollowingBill(followingID: string): Observable<{}> {
     return this.http.delete(
-      `${environment.apiURL}following/deleteBill/${followingID}`
+      `${nosqlEnvironment.apiURL}following/deleteBill/${followingID}`
     );
   }
 
   findFollowingBill(followingID: string): Observable<Following> {
     return this.http.get<Following>(
-      `${environment.apiURL}following/findBill/${followingID}`
+      `${nosqlEnvironment.apiURL}following/findBill/${followingID}`
     );
   }
 }

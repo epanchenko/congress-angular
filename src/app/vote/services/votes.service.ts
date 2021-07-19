@@ -20,7 +20,7 @@ export class VotesService {
 
   getLegislatorVotes(id: string): Observable<VoteSummary> {
     return this.http.get<VoteSummary>(
-      `${environment.apiURL}votes/legislator/${id}`
+      `${environment.apiURL}votes/legislator/${id}/all`
     );
   }
 
@@ -66,7 +66,7 @@ export class VotesService {
 
   getBillVotes(billID: string): Observable<BillVotes> {
     return this.http.get<BillVotes>(
-      `${environment.apiURL}votes/billID/${billID}`
+      `${environment.apiURL}votes/billID/${billID}/all`
     );
   }
 

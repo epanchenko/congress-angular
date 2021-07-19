@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr
-          style="transform: rotate(0);"
+          style="transform: rotate(0)"
           class="bg-white"
           *ngFor="let legislator of legislators$ | async"
         >
@@ -69,9 +69,10 @@
           <td>
             {{ legislator.party }}
           </td>
-          <td>
+          <td *ngIf="legislator.district !== '@'">
             {{ legislator.district }}
           </td>
+          <td *ngIf="legislator.district === '@'"></td>
         </tr>
       </tbody>
     </table>

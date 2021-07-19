@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
       { link: '/committees/all', name: 'Committees' },
       { link: '/votes/all', name: 'Votes' },
       { link: '/dataSources/all', name: 'Data Sources' },
-      { link: '/legislator/locate/legislators', name: 'Locate' },
+      /*{ link: '/legislator/locate/legislators', name: 'Locate' },*/
     ];
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Router } from '@angular/router';
-import { catchError, mergeMap } from 'rxjs/operators';
+import { catchError, mergeMap, tap } from 'rxjs/operators';
 import { EMPTY, zip, of } from 'rxjs';
 
 import { LegislatorDetail } from '../interfaces/legislatorDetail';
@@ -13,7 +13,8 @@ import { Following } from '../../interfaces/following';
   providedIn: 'root',
 })
 export class LegislatorDetailResolverService
-  implements Resolve<[LegislatorDetail, DistrictCoordinates, Following]> {
+  implements Resolve<[LegislatorDetail, DistrictCoordinates, Following]>
+{
   constructor(
     private legislatorService: LegislatorService,
     private router: Router

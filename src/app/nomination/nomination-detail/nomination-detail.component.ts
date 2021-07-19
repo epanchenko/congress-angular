@@ -31,7 +31,7 @@ export class NominationDetailComponent implements OnInit, OnDestroy {
       this.nomination = nomination[0].nomination;
 
       if (this.nomination.actions.length > 0) {
-        this.lastAction = this.nomination.actions[0];
+        this.lastAction = this.nomination.actions[this.nomination.actions.length - 1];
       }
 
       if (nomination[1]) {

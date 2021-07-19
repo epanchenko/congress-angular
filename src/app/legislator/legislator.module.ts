@@ -18,6 +18,7 @@ import { LegislatorTermsResolverService } from './services/legislator-terms-reso
 import { LegislatorCommitteesResolverService } from './services/legislator-committees-resolver.service';
 import { LegislatorVotesResolverService } from './services/legislator-votes-resolver.service';
 import { SharedModule } from '../shared/shared.module';
+import { googleMapsAPIKey } from '../../environments/apiKey';
 
 const routes: Routes = [
   {
@@ -69,7 +70,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBhksvfCqUijFZR2Qo97MEbay - nDzM77b8',
+      apiKey: googleMapsAPIKey,
     }),
   ],
   exports: [RouterModule],

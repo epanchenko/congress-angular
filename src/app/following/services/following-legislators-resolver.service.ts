@@ -32,7 +32,7 @@ export class FollowingLegislatorsResolverService implements Resolve<any> {
         return EMPTY;
       }),
       map((data) => _.values(data)),
-      map((data) => (data[1] as unknown) as Following[]),
+      map((data) => data[1] as unknown as Following[]),
       tap((legislators: Following[]) => {
         for (const legislator of legislators) {
           requests.push(

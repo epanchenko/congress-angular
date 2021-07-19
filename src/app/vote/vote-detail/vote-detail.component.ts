@@ -17,6 +17,13 @@ interface LegislatorVoteDetail {
   vote: string;
 }
 
+interface PartyVoteDetail {
+  Yea: number;
+  Nay: number;
+  NotVoting: number;
+  Present: number;
+}
+
 @Component({
   selector: 'app-vote-detail',
   templateUrl: './vote-detail.component.html',
@@ -24,9 +31,9 @@ interface LegislatorVoteDetail {
 })
 export class VoteDetailComponent implements OnInit, OnDestroy {
   totalVotes: number[];
-  democraticVotes: number[];
-  republicanVotes: number[];
-  independentVotes: number[];
+  democraticVotes: PartyVoteDetail;
+  republicanVotes: PartyVoteDetail;
+  independentVotes: PartyVoteDetail;
   individualVotes: LegislatorVoteDetail[];
   individualVotes$: Observable<LegislatorVoteDetail[]>;
   totalLabels = ['Yes', 'No', 'No Vote', 'Present'];
@@ -38,26 +45,12 @@ export class VoteDetailComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.totalVotes = [];
-    this.republicanVotes = [];
-    this.democraticVotes = [];
-    this.independentVotes = [];
     this.individualVotes = [];
 
-    /*this.voteColors = [
-      {
-        backgroundColor: [
-          'rgba(0, 148, 97, 1)',
-          'rgba(244, 4, 4, 1)',
-          'rgba(170, 170, 170, 1)',
-          'rgba(135, 206, 235, 1)',
-        ],
-      },
-    ];*/
-
     this.votes$ = this.route.data.subscribe(({ vote }) => {
-      this.democraticVotes = vote.voteDetail.democraticVotes.split('@');
-      this.republicanVotes = vote.voteDetail.republicanVotes.split('@');
-      this.independentVotes = vote.voteDetail.independentVotes.split('@');
+      this.democraticVotes = vote.voteDetail.democraticVotes;
+      this.republicanVotes = vote.voteDetail.republicanVotes;
+      this.independentVotes = vote.voteDetail.independentVotes;
 
       if (vote.voteDetail.billID !== '') {
         this.billID = vote.voteDetail.billID;
@@ -66,16 +59,13 @@ export class VoteDetailComponent implements OnInit, OnDestroy {
       }
 
       vote.voteDetail.individualVotes.forEach((individual) => {
-        const ind = individual.split('@');
-        const name = ind[1].split(' ');
-
         this.individualVotes.push({
-          lastName: name[name.length - 1],
-          firstName: name[0],
-          party: ind[2],
-          state: ind[3],
-          district: ind.length === 6 ? ind[5] : '',
-          vote: ind[4],
+          lastName: individual.lastName,
+          firstName: individual.firstName,
+          party: individual.party,
+          state: individual.state,
+          district: individual.district === '@' ? '' : individual.district,
+          vote: individual.vote,
         });
       });
 
@@ -86,17 +76,34 @@ export class VoteDetailComponent implements OnInit, OnDestroy {
         map((text) => this.search(text))
       );
 
-      for (let i = 0; i < 4; i++) {
+      /*for (let i = 0; i < 4; i++) {
         this.totalVotes[i] =
           +this.democraticVotes[i] +
           +this.republicanVotes[i] +
           +this.independentVotes[i];
-      }
+      }*/
+
+      this.totalVotes[0] =
+        this.democraticVotes.Yea +
+        this.republicanVotes.Yea +
+        this.independentVotes.Yea;
+      this.totalVotes[1] =
+        this.democraticVotes.Nay +
+        this.republicanVotes.Nay +
+        this.independentVotes.Nay;
+      this.totalVotes[2] =
+        this.democraticVotes.NotVoting +
+        this.republicanVotes.NotVoting +
+        this.independentVotes.NotVoting;
+      this.totalVotes[3] =
+        this.democraticVotes.Present +
+        this.republicanVotes.Present +
+        this.independentVotes.Present;
     });
   }
 
   districtString(district: string) {
-    if (district === '') {
+    if (district === '@') {
       return '';
     } else {
       return `- District ${district}`;

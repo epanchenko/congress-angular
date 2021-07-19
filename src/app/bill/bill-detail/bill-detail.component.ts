@@ -30,7 +30,7 @@ export class BillDetailComponent implements OnInit, OnDestroy {
       this.billID = this.route.snapshot.params.billID;
 
       if (this.bill.actions.length > 0) {
-        this.lastAction = this.bill.actions[0];
+        this.lastAction = this.bill.actions[this.bill.actions.length - 1];
       }
 
       if (bill[1]) {

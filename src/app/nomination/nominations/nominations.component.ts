@@ -14,6 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class NominationsComponent implements OnInit, OnDestroy {
   nominations: Nominations;
+
   private unsubscribe$ = new Subject<void>();
 
   constructor(

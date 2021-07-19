@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  apiURL: '//api.congressus.info/api/v2/',
+  apiURL: '//http://congressapispring.us-east-2.elasticbeanstalk.com/api/v2/',
 };
 
 export const nosqlEnvironment = {
-  production: false,
-  apiURL: '//api.congressus.info/api/v1/',
+  production: true,
+  apiURL: '//congressapinodejs.us-east-2.elasticbeanstalk.com/api/v1/',
 };

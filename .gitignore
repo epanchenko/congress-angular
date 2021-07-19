@@ -49,3 +49,5 @@ Thumbs.db
 .crt
 .key
 .pem
+
+apiKey.ts
